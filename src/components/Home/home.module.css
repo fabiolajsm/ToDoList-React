@@ -1,0 +1,6 @@
+.grid {
+    display: grid;
+    grid-auto-flow: column;
+    text-align: center;
+    padding-top: 20px;
+}

@@ -1,9 +1,10 @@
 import React from 'react';
 import Todos from '../Todos/Todos';
+import styles from './home.module.css';
 
-export function Home() {
+function Home() {
   return (
-    <div>
+    <div className={styles.grid}>
       <Todos status='Todo' />
       <Todos status='InProgress' />
       <Todos status='Done' />
