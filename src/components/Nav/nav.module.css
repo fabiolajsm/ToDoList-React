@@ -1,0 +1,13 @@
+.bg {
+    background-color: rgb(38, 70, 83);
+}
+
+.add {
+    color: rgb(233, 196, 106);
+    text-decoration: none;
+}
+
+.add:hover {
+    text-decoration: none;
+    color: rgb(244, 162, 97);
+}

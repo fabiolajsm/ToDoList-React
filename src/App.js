@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css';
 import { Route, BrowserRouter } from "react-router-dom";
 
 import Nav from './components/Nav/Nav';
@@ -11,7 +10,7 @@ import TodoDetail from './components/TodoDetail/TodoDetail';
 
 export function App() {
   return (
-    <div className="App">
+    <>
       <BrowserRouter>
         <Nav />
         <Route exact path="/edit/:id" render={({ match }) => <TodoDetail match={match} />} />
@@ -20,7 +19,7 @@ export function App() {
         <Route exact path='/add' component={AddTodo} />
         <Route exact path='/' component={Home} />
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 
