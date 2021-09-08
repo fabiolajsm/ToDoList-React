@@ -19,10 +19,3 @@ export function removeTodo(payload) {
         payload: payload
     }
 }
-
-export function toDone(payload) {
-    return {
-        type: 'Done',
-        payload: payload
-    }
-}

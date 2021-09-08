@@ -13,16 +13,7 @@ export default function Todos() {
         state.length > 0 ? state.map(element => {
           return (
             <div key={element.id} className={styles.list}>
-              {
-                element.status === "Todo" ?
-                  <div>
-                    <Todo id={element.id} title={element.title} status={element.status} />
-                  </div>
-                  :
-                  <div>
-                    <p>el estilo tachado</p>
-                  </div>
-              }
+              <Todo id={element.id} title={element.title} />
             </div>
           )
         })

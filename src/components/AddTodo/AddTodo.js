@@ -10,13 +10,16 @@ export default function AddTodo() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    return title !== '' ? dispatch(addTodo(title)) : null
+    if (title !== '') {
+      dispatch(addTodo(title))
+      setTitle("");
+    }
   }
 
   return (
     <div>
       <form className="form-inline" onSubmit={handleSubmit}>
-        <input className="form-control mr-sm-2" type="text" placeholder="..." onChange={handleChange} />
+        <input className="form-control mr-sm-2" type="text" placeholder="..." value={title} onChange={handleChange} />
         <button className="btn btn-outline-success my-2 my-sm-0" onClick={handleSubmit}>AddTodo</button>
       </form>
     </div>

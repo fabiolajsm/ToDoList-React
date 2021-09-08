@@ -1,26 +1,28 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './todo.module.css';
-import { toDone, removeTodo } from '../../actions/index'
+import { removeTodo } from '../../actions/index'
 
-export function Todo({ id, title, status }) {
-  const state = useSelector(state => state);
+export function Todo({ id, title }) {
+  const [css, setCss] = useState(true);
   const dispatch = useDispatch();
 
-  function handleStatus(e) {
-    console.log('entree');
-    console.log(e.target, 'eeeeeeeeee');
-    // dispatch(toDone(element));
+  function handleDelete(e) {
+    e.preventDefault();
+    dispatch(removeTodo(id));
   }
-
+  function handleStyle() {
+    return css ? setCss(false) : setCss(true);
+  }
   return (
-    <div key={id}>
+    <div key={id} onClick={handleStyle}>
       {
-        status === 'Done' ?
+        !css ?
           <p className={styles.done}>{title}</p>
           :
           <p>{title}</p>
       }
+      <button name="remove" onClick={handleDelete}>X</button>
     </div>
   )
 };
