@@ -10,7 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import styles from '../Home/home.module.css'; // from another folder, bc is too short...
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 600,
@@ -28,12 +28,11 @@ export default function Todo({ id, title }) {
     if (css) {
       setCss(false);
       setChecked(true);
-    }
-    else {
+    } else {
       setCss(true);
       setChecked(false);
     }
-  };
+  }
 
   function handleDelete(e) {
     e.preventDefault();
@@ -44,21 +43,18 @@ export default function Todo({ id, title }) {
     <List className={classes.root}>
       <ListItem key={id} button onClick={handleToggle}>
         <ListItemIcon>
-          <Checkbox
-            edge="start"
-            checked={checked}
-            disableRipple
-          />
+          <Checkbox edge='start' checked={checked} disableRipple />
         </ListItemIcon>
-        {
-          !css ?
-            <ListItemText id={id} className={styles.done} primary={`${title}`} />
-            :
-            <ListItemText id={id} primary={`${title}`} />
-        }
+        {!css ? (
+          <ListItemText id={id} className={styles.done} primary={`${title}`} />
+        ) : (
+          <ListItemText id={id} primary={`${title}`} />
+        )}
 
         <ListItemSecondaryAction>
-          <button className='btn btn-dark' onClick={handleDelete}>x</button>
+          <button className='btn btn-dark' onClick={handleDelete}>
+            x
+          </button>
         </ListItemSecondaryAction>
       </ListItem>
     </List>
