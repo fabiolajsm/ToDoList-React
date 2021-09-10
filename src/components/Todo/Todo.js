@@ -8,12 +8,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import styles from '../Home/home.module.css';
+import styles from '../Home/home.module.css'; // from another folder, bc is too short...
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 360,
+    maxWidth: 600,
     backgroundColor: theme.palette.background.paper,
   },
 }));

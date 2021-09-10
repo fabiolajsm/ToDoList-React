@@ -18,4 +18,5 @@
 .done {
     text-decoration: line-through;
     color: gray;
+    width: auto;
 }
