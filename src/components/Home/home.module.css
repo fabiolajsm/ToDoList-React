@@ -1,6 +1,21 @@
 .grid {
     display: grid;
-    grid-auto-flow: column;
+    grid-auto-flow: row;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 30px;
+    justify-content: center;
+    align-content: center;
+}
+
+.ctn {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.done {
+    text-decoration: line-through;
+    color: gray;
 }
