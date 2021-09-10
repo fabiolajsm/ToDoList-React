@@ -7,7 +7,7 @@ export function Nav() {
   return (
     <div className={styles.bg}>
       <nav className="navbar">
-        <Link to='/' className="navbar-brand">TODOS</Link>
+        <Link to='/' className="navbar-brand">Just do it</Link>
         <span className={styles.add}><AddTodo /></span>
       </nav>
     </div>

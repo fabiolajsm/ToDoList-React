@@ -1,30 +1,66 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import styles from './todo.module.css';
+import { makeStyles } from '@material-ui/core/styles';
 import { removeTodo } from '../../actions/index'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
+import styles from './todo.module.css';
 
-export function Todo({ id, title }) {
-  const [css, setCss] = useState(true);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+export default function Todo({ id, title }) {
+  const classes = useStyles();
   const dispatch = useDispatch();
+  const [css, setCss] = useState(true);
+  const [checked, setChecked] = React.useState(false);
+
+  function handleToggle() {
+    if (css) {
+      setCss(false);
+      setChecked(true);
+    }
+    else {
+      setCss(true);
+      setChecked(false);
+    }
+  };
 
   function handleDelete(e) {
     e.preventDefault();
     dispatch(removeTodo(id));
   }
-  function handleStyle() {
-    return css ? setCss(false) : setCss(true);
-  }
-  return (
-    <div key={id} onClick={handleStyle}>
-      {
-        !css ?
-          <p className={styles.done}>{title}</p>
-          :
-          <p>{title}</p>
-      }
-      <button name="remove" onClick={handleDelete}>X</button>
-    </div>
-  )
-};
 
-export default Todo;
+  return (
+    <List className={classes.root}>
+      <ListItem key={id} button onClick={handleToggle}>
+        <ListItemIcon>
+          <Checkbox
+            edge="start"
+            checked={checked}
+            disableRipple
+          />
+        </ListItemIcon>
+        {
+          !css ?
+            <ListItemText id={id} className={styles.done} primary={`${title}`} />
+            :
+            <ListItemText id={id} primary={`${title}`} />
+        }
+
+        <ListItemSecondaryAction>
+          <button className={styles.Icon} onClick={handleDelete}>x</button>
+        </ListItemSecondaryAction>
+      </ListItem>
+    </List>
+  );
+}

@@ -2,3 +2,9 @@
     text-decoration: line-through;
     color: gray;
 }
+.Icon {
+    width: 50px;
+    height: auto;
+    font-size: 22px;
+    border-color: transparent;
+  }
