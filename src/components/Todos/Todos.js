@@ -19,10 +19,10 @@ export default function Todos() {
               </div>)
             })}
             <br />
-            <img src={img1} alt="photo" />
+            <img src={img1} alt="https://i.pinimg.com/564x/1b/71/97/1b719784c82adaf96b79123e2b4be877.jpg" />
           </>
           :
-          <img src={img2} alt="photo" />
+          <img src={img2} alt="https://i.pinimg.com/564x/6f/e2/5f/6fe25fcdf430117ce658316dd526acc4.jpg" />
       }
     </div >
   )
