@@ -19,8 +19,8 @@ export default function AddTodo() {
   return (
     <div>
       <form className="form-inline" onSubmit={handleSubmit}>
-        <input className="form-control mr-sm-2" type="text" placeholder="..." value={title} onChange={handleChange} />
-        <button className="btn btn-outline-secondary my-2 my-sm-0" onClick={handleSubmit}>AddTodo</button>
+        <input className="form-control mr-sm-2" type="text" placeholder="Write your task..." value={title} onChange={handleChange} />
+        <button className="btn btn-outline-secondary my-2 my-sm-0" onClick={handleSubmit}>Add</button>
       </form>
     </div>
   )
