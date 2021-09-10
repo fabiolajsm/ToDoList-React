@@ -11,20 +11,19 @@ export default function Todos() {
   return (
     <div className={styles.wrapper}>
       {
-        state.length > 0 ? state.map(element => {
-          return (
-            <>
-              <div key={element.id} className={styles.list}>
+        state.length > 0 ?
+          <>
+            {state && state.map(element => {
+              return (<div key={element.id} className={styles.list}>
                 <Todo id={element.id} title={element.title} />
-              </div>
-              <img src={img1} alt="photo" />
-            </>
-          )
-        })
+              </div>)
+            })}
+            <br />
+            <img src={img1} alt="photo" />
+          </>
           :
           <img src={img2} alt="photo" />
       }
-
     </div >
   )
 };
