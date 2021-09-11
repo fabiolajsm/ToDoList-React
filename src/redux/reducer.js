@@ -6,6 +6,13 @@ const todos = (state = initialState, action) => {
       return [...state, { ...action.payload }]
     case 'RemoveTodo':
       return state.filter((element) => element.id !== action.payload)
+    case 'EditTodo':
+      return state.map(element => {
+        if (element.id === action.payload.id) {
+          element.task = action.payload.task
+        }
+        return element
+      })
     default:
       return state;
   }

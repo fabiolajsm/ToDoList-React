@@ -79,7 +79,7 @@ export default function Todos() {
                           {...provided.dragHandleProps}
                           key={item.id}
                           className={snapshot.isDragging ? 'selected' : 'not-selected'}>
-                          <Todo id={item.id} title={item.title} />
+                          <Todo id={item.id} task={item.task} />
                         </div>
                       )}
                     </Draggable>

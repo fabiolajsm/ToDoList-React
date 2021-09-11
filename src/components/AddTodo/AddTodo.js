@@ -3,23 +3,23 @@ import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/actions';
 
 export default function AddTodo() {
-  const [title, setTitle] = React.useState('');
+  const [task, setTask] = React.useState('');
   const dispatch = useDispatch();
 
-  function handleChange(e) { setTitle(e.target.value) }
+  function handleChange(e) { setTask(e.target.value) }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (title !== '') {
-      dispatch(addTodo(title))
-      setTitle("");
+    if (task !== '') {
+      dispatch(addTodo(task))
+      setTask("");
     }
   }
 
   return (
     <div>
       <form className="form-inline" onSubmit={handleSubmit}>
-        <input className="form-control mr-sm-2" type="text" placeholder="Write your task..." value={title} onChange={handleChange} />
+        <input className="form-control mr-sm-2" type="text" placeholder="Write your task..." value={task} onChange={handleChange} />
         <button className="btn btn-outline-secondary my-2 my-sm-0" onClick={handleSubmit}>Add</button>
       </form>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { removeTodo } from '../../redux/actions';
+import { editTodo, removeTodo } from '../../redux/actions';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Todo({ id, title }) {
+export default function Todo({ id, task }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [css, setCss] = useState(true);
@@ -46,12 +46,13 @@ export default function Todo({ id, title }) {
           <Checkbox edge='start' checked={checked} disableRipple />
         </ListItemIcon>
         {!css ? (
-          <ListItemText id={id} className={styles.done} primary={`${title}`} />
+          <ListItemText id={id} className={styles.done} primary={`${task}`} />
         ) : (
-          <ListItemText id={id} primary={`${title}`} />
+          <ListItemText id={id} primary={`${task}`} />
         )}
 
         <ListItemSecondaryAction>
+          {/* button edit */}
           <button className='btn btn-dark' onClick={handleDelete}>
             x
           </button>
