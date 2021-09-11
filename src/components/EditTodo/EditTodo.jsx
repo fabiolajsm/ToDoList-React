@@ -5,6 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { editTodo } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+// import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -20,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function EditTodo() {
+export default function EditTodo({ id }) {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [editTask, setEditTask] = useState(false);
+    const [editedTask, setEditedTask] = useState("");
     const dispatch = useDispatch();
 
     const handleOpen = () => {
@@ -35,13 +36,19 @@ export default function EditTodo() {
     };
 
     const handleEdit = () => {
-        editTask !== "" ? dispatch(editTodo) : null
+        let payload = { id, task: editedTask }
+        if (editedTask !== "") {
+            dispatch(editTodo(payload))
+            setOpen(false);
+        }
+        return null
     };
 
     return (
         <div>
             <button type="button" onClick={handleOpen}>
-                react-transition-group
+                {/* <EditIcon /> */}
+                hola
             </button>
             <Modal
                 aria-labelledby="transition-modal-title"
@@ -58,7 +65,7 @@ export default function EditTodo() {
                 <Fade in={open}>
                     <div className={classes.paper}>
                         <p id="transition-modal-description">Edit your task:</p>
-                        <input type='text' autoComplete="off" placeholder="..." value={editTask} onChange={(e) => setEditTask(e.target.value)}></input>
+                        <input type='text' autoComplete="off" placeholder="..." value={editedTask} onChange={(e) => setEditedTask(e.target.value)}></input>
                         <button onClick={handleEdit}>Edit</button>
                         <button onClick={handleClose}>Cancel</button>
                     </div>

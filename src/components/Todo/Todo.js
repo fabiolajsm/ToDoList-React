@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { editTodo, removeTodo } from '../../redux/actions';
+import { removeTodo } from '../../redux/actions';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -9,6 +9,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import styles from '../Home/home.module.css'; // from another folder, bc is too short...
+import EditTodo from '../EditTodo/EditTodo';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,9 +51,10 @@ export default function Todo({ id, task }) {
         ) : (
           <ListItemText id={id} primary={`${task}`} />
         )}
-
+        <div>
+          <EditTodo id={id} />
+        </div>
         <ListItemSecondaryAction>
-          {/* button edit */}
           <button className='btn btn-dark' onClick={handleDelete}>
             x
           </button>
