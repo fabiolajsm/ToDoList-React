@@ -5,7 +5,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { editTodo } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
-// import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -21,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function EditTodo({ id }) {
+export default function EditTodo({ id, task }) {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [editedTask, setEditedTask] = useState("");
+    const [editedTask, setEditedTask] = useState(task);
     const dispatch = useDispatch();
 
     const handleOpen = () => {
@@ -46,10 +47,9 @@ export default function EditTodo({ id }) {
 
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
-                {/* <EditIcon /> */}
-                hola
-            </button>
+            <IconButton onClick={handleOpen}>
+                <EditIcon />
+            </IconButton>
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"

@@ -10,6 +10,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import styles from '../Home/home.module.css'; // from another folder, bc is too short...
 import EditTodo from '../EditTodo/EditTodo';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -52,12 +54,12 @@ export default function Todo({ id, task }) {
           <ListItemText id={id} primary={`${task}`} />
         )}
         <div>
-          <EditTodo id={id} />
+          <EditTodo id={id} task={task} />
         </div>
         <ListItemSecondaryAction>
-          <button className='btn btn-dark' onClick={handleDelete}>
-            x
-          </button>
+          <IconButton aria-label="delete" onClick={handleDelete}>
+            <DeleteIcon />
+          </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
     </List>
