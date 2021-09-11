@@ -1,21 +1,25 @@
 let todoId = 0;
+let position = 1;
 
 export function addTodo(title) {
-    todoId++;
-    return {
-        type: 'AddTodo',
-        payload: {
-            id: todoId,
-            title: title,
-            status: 'Todo',
-        }
-    }
+  todoId++;
+  position++;
+  return {
+    type: 'AddTodo',
+    payload: {
+      id: todoId,
+      position: position,
+      title: title,
+      status: 'Todo',
+    },
+  };
 }
 
 export function removeTodo(payload) {
-    todoId--;
-    return {
-        type: 'RemoveTodo',
-        payload: payload
-    }
+  todoId--;
+  position--;
+  return {
+    type: 'RemoveTodo',
+    payload: payload,
+  };
 }
