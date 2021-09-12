@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/actions';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+    height: 52,
+  },
+}));
 
 export default function AddTodo() {
-  const [task, setTask] = React.useState('');
+  const [task, setTask] = useState('');
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   function handleChange(e) { setTask(e.target.value) }
 
@@ -27,9 +37,10 @@ export default function AddTodo() {
           value={task}
           onChange={handleChange}
         />
-        {/* <input className="form-control mr-sm-2" type="text" placeholder="Write your task..." value={task} onChange={handleChange} /> */}
-        <button className="btn btn-outline-secondary my-2 my-sm-0" onClick={handleSubmit}>Add</button>
+        <Button variant="outlined" className={classes.margin} onClick={handleSubmit}>
+          Add
+        </Button>
       </form>
     </div>
   )
-}
+};
