@@ -5,9 +5,11 @@ import { removeTodo } from '../../redux/actions';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import EditTodo from '../EditTodo/EditTodo';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 import styles from '../Home/home.module.css'; // from another folder, bc is too short...
 
 const useStyles = makeStyles(theme => ({
@@ -18,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Todo({ id, title }) {
+export default function Todo({ id, task }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [css, setCss] = useState(true);
@@ -45,17 +47,15 @@ export default function Todo({ id, title }) {
         <ListItemIcon>
           <Checkbox edge='start' checked={checked} disableRipple />
         </ListItemIcon>
-        {!css ? (
-          <ListItemText id={id} className={styles.done} primary={`${title}`} />
-        ) : (
-          <ListItemText id={id} primary={`${title}`} />
-        )}
-
-        <ListItemSecondaryAction>
-          <button className='btn btn-dark' onClick={handleDelete}>
-            x
-          </button>
-        </ListItemSecondaryAction>
+        <ListItemText
+          id={id}
+          className={!css ? styles.done : null}
+          primary={`${task}`}
+        />
+        <EditTodo id={id} task={task} />
+        <IconButton aria-label="delete" onClick={handleDelete}>
+          <DeleteIcon />
+        </IconButton>
       </ListItem>
     </List>
   );
