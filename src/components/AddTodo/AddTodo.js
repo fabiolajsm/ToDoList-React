@@ -35,6 +35,7 @@ export default function AddTodo() {
           placeholder="..."
           variant="outlined"
           value={task}
+          multiline
           onChange={handleChange}
         />
         <Button variant="outlined" className={classes.margin} onClick={handleSubmit}>

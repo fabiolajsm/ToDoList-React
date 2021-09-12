@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { editTodo } from '../../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { editTodo } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
-import EditIcon from '@material-ui/icons/Edit';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -16,9 +18,12 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
+        border: '3px solid #fcd5ce',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: theme.spacing(3, 4, 3),
+    },
+    margin: {
+        height: 55,
     },
 }));
 
@@ -27,14 +32,6 @@ export default function EditTodo({ id, task }) {
     const [open, setOpen] = useState(false);
     const [editedTask, setEditedTask] = useState(task);
     const dispatch = useDispatch();
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     const handleEdit = () => {
         let payload = { id, task: editedTask }
@@ -47,7 +44,7 @@ export default function EditTodo({ id, task }) {
 
     return (
         <div>
-            <IconButton onClick={handleOpen}>
+            <IconButton onClick={() => setOpen(true)}>
                 <EditIcon />
             </IconButton>
             <Modal
@@ -55,7 +52,7 @@ export default function EditTodo({ id, task }) {
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
                 open={open}
-                onClose={handleClose}
+                onClose={() => setOpen(false)}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
@@ -64,10 +61,18 @@ export default function EditTodo({ id, task }) {
             >
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <p id="transition-modal-description">Edit your task:</p>
-                        <input type='text' autoComplete="off" placeholder="..." value={editedTask} onChange={(e) => setEditedTask(e.target.value)}></input>
-                        <button onClick={handleEdit}>Edit</button>
-                        <button onClick={handleClose}>Cancel</button>
+                        <TextField
+                            id="outlined-textarea"
+                            autoComplete="off"
+                            label="Edit your task:"
+                            placeholder={editedTask}
+                            multiline
+                            variant="outlined"
+                            onChange={(e) => setEditedTask(e.target.value)}
+                        />
+                        <Button variant="outlined" className={classes.margin} onClick={handleEdit}>
+                            Edit
+                        </Button>
                     </div>
                 </Fade>
             </Modal>
