@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import styles from './todos.module.css';
-import img1 from './dt.jpg';
-import img2 from './doit.jpg';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Todo from '../Todo/Todo';
-import { orderBy, range } from 'lodash'; // prueba branch dev
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { orderBy, range } from 'lodash';
+import img1 from './dt.jpg';
+import img2 from './doit.jpg';
+import styles from './todos.module.css';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,11 +22,13 @@ export default function Todos() {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [data, setData] = useState(state);
+
   useEffect(() => {
     if (data !== state) {
       setData(state);
     }
   }, [state, data]);
+
   const onDragEnd = result => {
     const { destination, source } = result;
     if (!destination || !source) {
@@ -62,6 +64,7 @@ export default function Todos() {
     });
     setData(reOrderItems);
   };
+
   return (
     <div className={styles.wrapper}>
       {data.length > 0 ? (
