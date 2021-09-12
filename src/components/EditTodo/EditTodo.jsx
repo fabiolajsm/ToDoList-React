@@ -35,6 +35,7 @@ export default function EditTodo({ id, task }) {
 
     const handleEdit = () => {
         let payload = { id, task: editedTask }
+        if (editedTask.length > 47) return alert("The task must have less than 3 lines of text");
         if (editedTask !== "") {
             dispatch(editTodo(payload))
             setOpen(false);
