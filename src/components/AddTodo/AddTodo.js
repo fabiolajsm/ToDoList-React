@@ -21,6 +21,7 @@ export default function AddTodo() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (task.length > 47) return alert("The task must have less than 3 lines of text");
     if (task !== '') {
       dispatch(addTodo(task))
       setTask("");
